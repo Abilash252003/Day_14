@@ -1,0 +1,35 @@
+///100 Days of RTL Challenge///
+
+///Abilash P///
+
+///3 bit comparator///
+
+module bit_3_comparator_tb ();
+
+reg  [2:0]a_in,b_in;
+wire a_less_b, a_great_b, a_equal_b;
+
+bit_3_comparator DUT (.a_in(a_in), .b_in(b_in), .a_less_b(a_less_b), .a_great_b(a_great_b), .a_equal_b(a_equal_b));
+
+integer i;
+
+initial
+begin
+  a_in = 3'b 000;
+  b_in = 3'b 000;
+end
+
+initial
+begin
+  for(i=0; i<64; i=i+1)
+  begin
+    {a_in,b_in} = i;
+    if(b_in == 0)
+      $display("-----------------------------------------------");
+    #20;
+  end
+end
+
+initial
+ $monitor("Input A = %b, Input B = %b, A<B = %b, A>B = %b, A==b = %b", a_in,b_in,a_less_b,a_great_b, a_equal_b);
+endmodule
